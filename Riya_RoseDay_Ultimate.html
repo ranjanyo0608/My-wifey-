@@ -1,1 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Riya | RoseDay Project 🌹</title>
 
+<style>
+body{
+    margin:0;
+    height:100vh;
+    background:#0d1117;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family: Consolas, monospace;
+    color:#c9d1d9;
+}
+
+/* Container */
+.project{
+    width:92%;
+    max-width:650px;
+    background:#161b22;
+    border-radius:12px;
+    box-shadow:0 0 50px rgba(255,100,140,.35);
+    overflow:hidden;
+}
+
+/* GitHub Header */
+.header{
+    background:#010409;
+    padding:12px 16px;
+    font-size:14px;
+    display:flex;
+    justify-content:space-between;
+}
+.repo{
+    color:#58a6ff;
+}
+.branch{
+    color:#8b949e;
+}
+
+/* Code Area */
+.code{
+    padding:20px;
+    min-height:260px;
+    white-space:pre-line;
+    font-size:14px;
+    line-height:1.7;
+}
+.keyword{color:#79c0ff}
+.string{color:#a5d6ff}
+.name{color:#ff7eb3;font-weight:bold}
+
+/* Rose */
+.rose{
+    font-size:55px;
+    text-align:center;
+    animation:bloom 2s infinite;
+    display:none;
+}
+@keyframes bloom{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.25)}
+}
+
+/* Heart */
+.heart{
+    text-align:center;
+    font-size:30px;
+    animation:beat 1s infinite;
+    display:none;
+}
+@keyframes beat{
+    0%,100{transform:scale(1)}
+    50%{transform:scale(1.2)}
+}
+
+/* Buttons */
+.buttons{
+    text-align:center;
+    padding:15px;
+    display:none;
+}
+button{
+    padding:10px 22px;
+    border:none;
+    border-radius:20px;
+    margin:8px;
+    cursor:pointer;
+    font-family:inherit;
+}
+.yes{background:#ff7eb3;color:white}
+.no{
+    background:#30363d;
+    color:white;
+    position:relative;
+}
+
+/* Countdown */
+.countdown{
+    text-align:center;
+    color:#ff9eb5;
+    font-size:14px;
+    padding-bottom:10px;
+    display:none;
+}
+
+/* Final */
+.final{
+    text-align:center;
+    color:#ffb3c6;
+    padding:15px;
+    display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="project">
+
+    <div class="header">
+        <div class="repo">❤️ Riya-RoseDay-Project</div>
+        <div class="branch">main</div>
+    </div>
+
+    <div id="code" class="code"></div>
+
+    <div id="rose" class="rose">🌹</div>
+    <div id="heart" class="heart">❤️</div>
+
+    <div id="buttons" class="buttons">
+        <button class="yes" onclick="accept()">Accept My Rose 🌹</button>
+        <button class="no" id="noBtn">No 😏</button>
+    </div>
+
+    <div id="countdown" class="countdown"></div>
+
+    <div id="final" class="final">
+        ✔ Rose merged successfully 💘<br>
+        <span class="name">Riya</span>, you are my favorite project<br>
+        and my forever Rose 🌹
+    </div>
+
+</div>
+
+<!-- Soft romantic music -->
+<audio autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+</audio>
+
+<script>
+const text =
+`<span class="keyword">public class</span> Love {
+
+    <span class="keyword">public static void</span> main(String[] args) {
+
+        String rose = "<span class='name'>Riya</span>";
+
+        System.out.println("Happy Rose Day 🌹");
+
+        // In my life repository,
+        // you are the best commit.
+
+        // No bugs. No rollback.
+        // Only love ❤️
+
+    }
+}`;
+
+let i=0;
+const speed=30;
+const codeDiv=document.getElementById("code");
+
+function type(){
+    if(i<text.length){
+        codeDiv.innerHTML+=text.charAt(i);
+        i++;
+        setTimeout(type,speed);
+    }else{
+        showExtras();
+    }
+}
+type();
+
+function showExtras(){
+    document.getElementById("rose").style.display="block";
+    document.getElementById("heart").style.display="block";
+    document.getElementById("buttons").style.display="block";
+    document.getElementById("countdown").style.display="block";
+    startCountdown();
+}
+
+/* No button escape */
+const noBtn=document.getElementById("noBtn");
+noBtn.addEventListener("mouseover",()=>{
+    const x=Math.random()*200-100;
+    const y=Math.random()*100-50;
+    noBtn.style.transform=`translate(${x}px,${y}px)`;
+});
+
+/* Accept */
+function accept(){
+    document.getElementById("buttons").style.display="none";
+    document.getElementById("final").style.display="block";
+}
+
+/* Valentine Countdown */
+function startCountdown(){
+    const valentine=new Date("Feb 14, 2026 00:00:00").getTime();
+    setInterval(()=>{
+        const now=new Date().getTime();
+        const diff=valentine-now;
+        const days=Math.floor(diff/(1000*60*60*24));
+        document.getElementById("countdown").innerHTML=
+        `⏳ ${days} days left until Valentine’s Day 💘`;
+    },1000);
+}
+</script>
+
+</body>
+</html>
